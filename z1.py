@@ -2,7 +2,7 @@ import csv
 
 
 def stream_counter(a_name, t_name, t_date, b_date='01.01.2002'):
-    """Описание функции complex.
+    """Описание функции stream_counter.
 
 
 
