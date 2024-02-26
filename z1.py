@@ -28,3 +28,16 @@ def stream_counter(a_name, t_name, t_date, b_date='01.01.2002'):
 
 
 file = [[y.replace('\n', '') for y in x.split(';')] for x in open('songs.csv', encoding='utf-8').readlines()[1:]]
+
+new_file = open('songs_new.csv', 'w', encoding='utf-8')
+writer = csv.writer(new_file)
+writer.writerow(['artist_name;track_name;streams'])
+for row in file:
+    date = [int(y) for y in row[3].split('.')]
+    flag_date = date[2] >= 2002
+    if flag_date:
+        if int(row[0]) != 0:
+            writer.writerow([f'{row[1]};{row[2]};{row[0]}'])
+        else:
+            new_streams = stream_counter(row[1], row[2], row[3])
+            writer.writerow([f'{row[1]};{row[2]};{new_streams}'])
